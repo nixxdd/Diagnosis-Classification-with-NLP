@@ -57,7 +57,7 @@ Introducing a dense layer aids in providing a meaningful representation to these
 For the attention scores (computed between the query and value vector, because we are implementing self-attention the values vector are the previous hidden steps while the query it's the current hidden state) we will use the additive score with the $tanh$ function, 
 $\text{score}(q, v) = \text{tanh}(W\_q q + W\_v v)$
 
-Which we tell us how important are two vectors with respect to each other. In the code this step it's done by the linear projection of the scores to a dimension of 1, in which we will get a scalar (relevance) for each time step. Afterwards these scores we will be transformed into a probability distribution for all time steps using a `softmax` that will give us the `attention_weights` \[\text{attention\_weights}(q, V) = \text{softmax}(\text{score}(q, V))\]
+Which we tell us how important are two vectors with respect to each other. In the code this step it's done by the linear projection of the scores to a dimension of 1, in which we will get a scalar (relevance) for each time step. Afterwards these scores we will be transformed into a probability distribution for all time steps using a `softmax` that will give us the `attention_weights` \( \text{attention\_weights}(q, V) = \text{softmax}(\text{score}(q, V)) \)
 
 which we will later inspect so we can check which words the model it's paying more attention towards
 
