@@ -50,19 +50,14 @@ Adding dense layers post-LSTM worsened performance, possibly due to the model no
 
 To enhance the capability of our model to focus on relevant information, we incorporated an attention layer. Following this layer, we employed a dense layer to ensure that the dimensions of the context vector are appropriately aligned before reaching the output layer. This step is crucial, particularly compared to models lacking attention mechanisms. As the output of the attention layer it's a vector of weights computed as the weighted some of the scores with the values vector:
 
-$$
-\text{context\_vector}(q, V) = \sum_{i} \text{attention\_weights}(q, V)\_i \cdot v\_i
-$$
+$\text{context\_vector}(q, V) = \sum_{i} \text{attention\_weights}(q, V)\_i \cdot v\_i$
 
 Introducing a dense layer aids in providing a meaningful representation to these weights, thus refining the model's decision-making process. 
 
 For the attention scores (computed between the query and value vector, because we are implementing self-attention the values vector are the previous hidden steps while the query it's the current hidden state) we will use the additive score with the $tanh$ function, 
-$$
-\text{score}(q, v) = \text{tanh}(W\_q q + W\_v v)
-$$
+$\text{score}(q, v) = \text{tanh}(W\_q q + W\_v v)$
 
-Which we tell us how important are two vectors with respect to each other. In the code this step it's done by the linear projection of the scores to a dimension of 1, in which we will get a scalar (relevance) for each time step. Afterwards these scores we will be transformed into a probability distribution for all time steps using a `softmax` that will give us the `attention_weights`
-$$\text{attention\_weights}(q, V) = \text{softmax}(\text{score}(q, V))$$
+Which we tell us how important are two vectors with respect to each other. In the code this step it's done by the linear projection of the scores to a dimension of 1, in which we will get a scalar (relevance) for each time step. Afterwards these scores we will be transformed into a probability distribution for all time steps using a `softmax` that will give us the `attention_weights` $\text{attention\_weights}(q, V) = \text{softmax}(\text{score}(q, V))$
 which we will later inspect so we can check which words the model it's paying more attention towards
 
 ![alt text](files/attention_layer.png)
