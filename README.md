@@ -50,7 +50,7 @@ Adding dense layers post-LSTM worsened performance, possibly due to the model no
 
 To enhance the capability of our model to focus on relevant information, we incorporated an attention layer. Following this layer, we employed a dense layer to ensure that the dimensions of the context vector are appropriately aligned before reaching the output layer. This step is crucial, particularly compared to models lacking attention mechanisms. As the output of the attention layer it's a vector of weights computed as the weighted some of the scores with the values vector:
 
-$\text{context\_vector}(q, V) = \sum_{i} \text{attention\_weights}(q, V)\_i \cdot v\_i$
+$\text{context\_vector}(q, V) = \sum\_{i} \text{attention\_weights}(q, V)\_i \cdot v\_i$
 
 Introducing a dense layer aids in providing a meaningful representation to these weights, thus refining the model's decision-making process. 
 
